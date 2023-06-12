@@ -3,17 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AtypikHouseBackEnd.Models
 {
-    [Table("Activity")]
+    [Table("Activitys")]
     public class Activity
     {
        [Key]
-       public int act_id { get; set; }
-       public string act_name { get; set;}
-       public int act_adv_id { get; set; }
-       public string  act_adress{ get; set; }
-       public string  act_city{ get; set; }
-       public int act_postal { get; set; } // string ?
-       public string act_describe { get; set; }
-       public int act_usr_id { get; set; } 
+       public int Id { get; set; }
+       public string Name { get; set;}
+       public int AdvId { get; set; }
+       public string  Adress { get; set; }
+       public string  City { get; set; }
+       public int Postal { get; set; } 
+       public string Describe { get; set; }
+       public int UsrId { get; set; } 
     }
 }
