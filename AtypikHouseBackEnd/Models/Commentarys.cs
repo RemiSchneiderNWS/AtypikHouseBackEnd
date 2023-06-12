@@ -7,11 +7,11 @@ namespace AtypikHouseBackEnd.Models
     public class Commentarys
     {
         [Key]
-        public int com_id { get; set; }
-        public string com_text { get; set; }
-        public int com_adv_id { get; set; }
-        public int com_usr_id { get; set; }
-        public string com_usr_firstName { get; set; }
-        public string com_usr_lastName { get; set; }
+        public int Id { get; set; }
+        public string Text { get; set; }
+        public int AdvId { get; set; }
+        public int UsrId { get; set; }
+        public string UsrFirstName { get; set; }
+        public string UsrLastName { get; set; }
     }
 }

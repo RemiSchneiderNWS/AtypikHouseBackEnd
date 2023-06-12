@@ -4,27 +4,27 @@ using System.Numerics;
 
 namespace AtypikHouseBackEnd.Models
 {
-    [Table("Advert")]
+    [Table("Adverts")]
     public class Advert
     {
         [Key]   
-        public int adv_id { get; set; } 
+        public int Id { get; set; } 
 
-        public string adv_name { get; set; }
-        public string adv_type { get; set; }   
-        public int adv_tenants { get; set; }    
-        public int adv_user_id { get; set; }
-        public Boolean adv_status { get; set; }
-        public Boolean adv_up { get; set; }
-        public int adv_cri_limit { get; set; }
-        public DateTime adv_created_at { get; set; }
-        public int adv_price { get; set; }
-        public string adv_adress { get; set; }
-        public string adv_city { get; set; }
-        public int adv_postal { get; set; }
-        public int adv_usr_phone { get; set; }
-        public int adv_usr_mail { get; set; }
-        public string adv_describe { get; set;}
+        public string Name { get; set; }
+        public string Type { get; set; }   
+        public int Tenants { get; set; }    
+        public int User_id { get; set; }
+        public Boolean Status { get; set; }
+        public Boolean Up { get; set; }
+        public int CriLimit { get; set; }
+        public DateTime Created_at { get; set; }
+        public int Price { get; set; }
+        public string Adress { get; set; }
+        public string City { get; set; }
+        public int Postal { get; set; }
+        public int UsrPhone { get; set; }
+        public int UsrMail { get; set; }
+        public string Describe { get; set;}
 
 
     }

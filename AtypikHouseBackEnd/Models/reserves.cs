@@ -8,22 +8,22 @@ namespace AtypikHouseBackEnd.Models
     public class reserves
     {
         [Key]
-        public int res_id { get; set; }
+        public int Id { get; set; }
 
-        public int res_usr_id { get; set; }
-        public string res_usr_mail { get; set; }
-        public int res_usr_phone { get; set; }
-        public int res_adv_id { get; set; }
-        public string res_adv_name { get; set; }
-        public DateTime res_date_start { get; set; }
-        public DateTime res_date_end { get; set; }
-        public DateTime res_created_at { get;set; }
-        public int res_adv_price { get; set; }
-        public Boolean res_payment { get; set; }
-        public string res_payment_timer {get; set; }
-        public int res_adv_tenants { get; set; }
-        public Boolean res_del_tenant { get; set; }
-        public Boolean res_del_owner { get; set; }
+        public int UsrId { get; set; }
+        public string UsrMail { get; set; }
+        public int UsrPhone { get; set; }
+        public int AdvId { get; set; }
+        public string AdvName { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateEnd { get; set; }
+        public DateTime CreatedAt { get;set; }
+        public int AdvPrice { get; set; }
+        public Boolean Payment { get; set; }
+        public string PaymentTimer {get; set; }
+        public int AdvTenants { get; set; }
+        public Boolean DelTenant { get; set; }
+        public Boolean DelOwner { get; set; }
 
     }
 }

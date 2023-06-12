@@ -7,8 +7,8 @@ namespace AtypikHouseBackEnd.Models
     public class Criterias
     {
         [Key]
-        public int cri_id { get; set; }
-        public string cri_name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
     }
 }
