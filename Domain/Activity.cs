@@ -1,0 +1,13 @@
+﻿namespace Domain
+{
+    public class Activity : DBModel
+    {
+        public string Name { get; set; } = string.Empty;
+        //public int AdvId { get; set; }
+        public string Adress { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public string Postal { get; set; } = string.Empty;
+        public string Describe { get; set; } = string.Empty;
+        public User User { get; set; } = null!;
+    }
+}

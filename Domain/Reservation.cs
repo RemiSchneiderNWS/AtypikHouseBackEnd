@@ -1,15 +1,11 @@
-﻿using Microsoft.Identity.Client;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AtypikHouseBackEnd.Models
+namespace Domain
 {
-    [Table("reserves")]
-    public class reserves
+    public class Reservation
     {
-        [Key]
         public int Id { get; set; }
-
         public int UsrId { get; set; }
         public string UsrMail { get; set; }
         public int UsrPhone { get; set; }
@@ -24,6 +20,5 @@ namespace AtypikHouseBackEnd.Models
         public int AdvTenants { get; set; }
         public Boolean DelTenant { get; set; }
         public Boolean DelOwner { get; set; }
-
     }
 }

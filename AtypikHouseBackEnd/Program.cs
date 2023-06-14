@@ -1,7 +1,9 @@
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using AtypikHouseBackEnd.Context;
 using System.Text;
+using Database;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
@@ -11,23 +13,30 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>();
 
-builder.Services.AddCors(options => options.AddDefaultPolicy(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+// Repositories
+builder.Services.AddScoped<ActivityRepository>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    .AddJwtBearer(options =>
-                    {
-                        options.SaveToken = true;
-                        options.TokenValidationParameters = new TokenValidationParameters()
-                        {
-                            ValidateIssuer = true,
-                            ValidateAudience = true,
-                            ValidateLifetime = true,
-                            ValidateIssuerSigningKey = true,
-                            ValidIssuer = builder.Configuration["jwt:issuer"],
-                            ValidAudience = builder.Configuration["jwt:issuer"],
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt:key"]))
-                        };
-                    });
+// End Repositories
+
+builder.Services.AddCors(options =>
+    options.AddDefaultPolicy(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["jwt:issuer"],
+            ValidAudience = builder.Configuration["jwt:issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt:key"]))
+        };
+    });
 
 var app = builder.Build();
 

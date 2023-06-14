@@ -1,15 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Numerics;
-
-namespace AtypikHouseBackEnd.Models
+﻿namespace Domain
 {
-    [Table("Adverts")]
     public class Advert
     {
-        [Key]   
         public int Id { get; set; } 
-
         public string Name { get; set; }
         public string Type { get; set; }   
         public int Tenants { get; set; }    
@@ -25,7 +18,5 @@ namespace AtypikHouseBackEnd.Models
         public int UsrPhone { get; set; }
         public int UsrMail { get; set; }
         public string Describe { get; set;}
-
-
     }
 }

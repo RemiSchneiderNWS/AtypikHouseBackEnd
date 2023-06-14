@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AtypikHouseBackEnd.Models;
 using System;
-using AtypikHouseBackEnd.Context;
+using Domain;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Repositories;
 
 namespace AtypikHouseBackEnd.Controllers
 {
@@ -10,23 +10,26 @@ namespace AtypikHouseBackEnd.Controllers
     [Route("[controller]")]
     public class ActivityController : Controller
     {
-         
-        private readonly AppDbContext context;
+        private readonly ActivityRepository Activities;
 
-        public ActivityController(AppDbContext context) {
-            this.context = context;
+        public ActivityController(ActivityRepository activities)
+        {
+            Activities = activities;
         }
 
-        [HttpGet("AllActivity")]
-        public ActionResult<Activity> GetAllActivity(){
-            return Ok();
+        [HttpGet]
+        public IEnumerable<Activity> GetAllActivity()
+        {
+            return (Activities.All());
         }
 
-        [HttpPost("createActivity")]
-        public ActionResult<Activity> CreateActivity(Activity activity){
-            context.activity.Add(activity);
-            context.SaveChanges();
-            return Ok(activity);
+        [HttpPost]
+        public Activity CreateActivity(Activity activity)
+        {
+            Activities.Add(activity);
+            Activities.Save();
+            
+            return (activity);
         }
     }
 }
