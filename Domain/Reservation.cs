@@ -6,9 +6,7 @@ namespace Domain
     public class Reservation
     {
         public int Id { get; set; }
-        public int UsrId { get; set; }
-        public string UsrMail { get; set; }
-        public int UsrPhone { get; set; }
+        public User User { get; set; } = null!       
         public int AdvId { get; set; }
         public string AdvName { get; set; }
         public DateTime DateStart { get; set; }

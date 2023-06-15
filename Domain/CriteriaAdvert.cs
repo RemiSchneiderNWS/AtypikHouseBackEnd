@@ -3,7 +3,7 @@
     public class CriteriaAdvert
     {
          public int Id { get; set; }
-         public int CriId { get; set; } 
-         public int AdvId { get; set; }
+         public Criterias Criteria { get; set; } = null!;
+         public Advert Advert { get; set; } = null!;
     }
 }

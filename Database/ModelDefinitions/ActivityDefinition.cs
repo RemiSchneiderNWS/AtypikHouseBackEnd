@@ -23,5 +23,6 @@ internal static class ActivityDefinition
         b.Property(x => x.Postal);
         b.Property(x => x.Describe);
         b.HasOne(x => x.User);
+        b.HasOne(x => x.Advert);
     }
 }
