@@ -9,19 +9,22 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Database.ModelDefinitions;
 
-internal static class ActivityDefinition
+internal static class AdvertImageDefinition
 {
+    /*
+      public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public int Order { get; set; }
+        public Activity Activity { get; set; } = null!;
+     */
     public static void Build(ModelBuilder modelBuilder)
     {
-        EntityTypeBuilder<Activity> b = modelBuilder.Entity<Activity>();
-            
+        EntityTypeBuilder<AdvertImage> b = modelBuilder.Entity<AdvertImage>();
+
         b.HasKey(x => x.Id);
         b.Property(x => x.Name);
-        b.Property(x => x.Adress);
-        b.Property(x => x.City);
-        b.Property(x => x.Postal);
-        b.Property(x => x.Describe);
-        b.HasOne(x => x.User);
-        b.HasOne(x => x.Advert);
+        b.Property(x => x.Order);
+        b.Property(x => x.Advert);
+
     }
 }

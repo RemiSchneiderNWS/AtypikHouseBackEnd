@@ -9,19 +9,20 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Database.ModelDefinitions;
 
-internal static class ActivityDefinition
+internal static class CriteriaDefinition
 {
+    /*
+           public int Id { get; set; }
+        public string Name { get; set; }  = string.Empty;
+     */
     public static void Build(ModelBuilder modelBuilder)
     {
-        EntityTypeBuilder<Activity> b = modelBuilder.Entity<Activity>();
-            
+        EntityTypeBuilder<Criterias> b = modelBuilder.Entity<Criterias>();
+
         b.HasKey(x => x.Id);
-        b.Property(x => x.Name);
-        b.Property(x => x.Adress);
-        b.Property(x => x.City);
-        b.Property(x => x.Postal);
-        b.Property(x => x.Describe);
-        b.HasOne(x => x.User);
-        b.HasOne(x => x.Advert);
+        b.Property( x => x.Name);
+      
+
+
     }
 }
