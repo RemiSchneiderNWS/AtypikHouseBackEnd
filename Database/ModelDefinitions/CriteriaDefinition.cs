@@ -11,10 +11,6 @@ namespace Database.ModelDefinitions;
 
 internal static class CriteriaDefinition
 {
-    /*
-           public int Id { get; set; }
-        public string Name { get; set; }  = string.Empty;
-     */
     public static void Build(ModelBuilder modelBuilder)
     {
         EntityTypeBuilder<Criterias> b = modelBuilder.Entity<Criterias>();

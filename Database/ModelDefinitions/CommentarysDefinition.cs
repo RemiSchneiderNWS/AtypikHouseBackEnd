@@ -11,12 +11,6 @@ namespace Database.ModelDefinitions;
 
 internal static class CommentarysDefinition
 {
-    /*
-              public int Id { get; set; }
-        public string Text { get; set; } = string.Empty;
-        public Advert Advert { get; set; } = null!;
-        public User User { get; set; } = null!;
-     */
     public static void Build(ModelBuilder modelBuilder)
     {
         EntityTypeBuilder<Commentarys> b = modelBuilder.Entity<Commentarys>();

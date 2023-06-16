@@ -20,7 +20,7 @@ namespace Database
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseNpgsql("Host=localhost;Database=AtypikHouse;Username=postgres;Password=root");
+            optionsBuilder.UseNpgsql("Host=localhost;Database=AtypikHouse;Username=postgres;Password=866e72d0;Port=49174");
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
         

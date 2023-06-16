@@ -11,12 +11,6 @@ namespace Database.ModelDefinitions;
 
 internal static class AdvertImageDefinition
 {
-    /*
-      public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public int Order { get; set; }
-        public Activity Activity { get; set; } = null!;
-     */
     public static void Build(ModelBuilder modelBuilder)
     {
         EntityTypeBuilder<AdvertImage> b = modelBuilder.Entity<AdvertImage>();
