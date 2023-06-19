@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Repositories;
 using AtypikHouseBackEnd.Services;
 using System.Text.RegularExpressions;
+using Payloads;
 
 namespace AtypikHouseBackEnd.Controllers
 {
@@ -23,8 +24,11 @@ namespace AtypikHouseBackEnd.Controllers
         }
 
         [HttpPost]
-        public bool CreateUser(User user)
+        public bool CreateUser(CreateUserPayload user)
         {
+            if (!ModelState.IsValid)
+                return false;
+
             string passwordHashed = Hashing.Sha512(user.Password);
             user.Password = passwordHashed;
            /* var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
