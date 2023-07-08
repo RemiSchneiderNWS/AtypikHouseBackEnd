@@ -1,6 +1,6 @@
 ﻿namespace Domain
 {
-    public class Advert
+    public class Advert : DBModel
     {
         public int Id { get; set; } 
         public string Name { get; set; } = string.Empty;

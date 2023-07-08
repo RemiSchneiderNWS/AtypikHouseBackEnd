@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 
-namespace BackEnd_TocTroc.Services
+namespace AtypikHouseBackEnd.Services
 {
     public class Hashing
     {

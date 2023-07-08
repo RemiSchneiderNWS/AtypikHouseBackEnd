@@ -9,6 +9,8 @@ namespace Database
         public DbSet<Activity> Activity { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Advert> Adverts { get; set; }  
+
         public AppDbContext() { }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)

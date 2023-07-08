@@ -34,6 +34,16 @@ public abstract class Repository<T> where T : DBModel
         Set.Add(entity);
     }
 
+    public void Update(T entity) 
+    { 
+        
+        Set.Update(entity);
+    }
+
+    public void Delete(T entity)
+    {
+        Set.Remove(entity);
+    }
     public void Save()
     {
         Context.SaveChanges();
