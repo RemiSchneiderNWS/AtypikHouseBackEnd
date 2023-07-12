@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
-    public class Reservation
+    public class Reservation : DBModel
     {
-        public int Id { get; set; }
+      
         public User User { get; set; } = null!;
         public Advert Advert { get; set; } = null!;      
         public DateTime DateStart { get; set; }

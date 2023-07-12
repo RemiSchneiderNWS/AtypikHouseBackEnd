@@ -10,6 +10,11 @@ namespace Database
         public DbSet<User> Users { get; set; }
 
         public DbSet<Advert> Adverts { get; set; }  
+        public DbSet<Commentarys> Commentarys { get; set; }
+
+        public DbSet<Criterias> Criterias { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }    
 
         public AppDbContext() { }
 

@@ -93,6 +93,7 @@ namespace AtypikHouseBackEnd.Controllers
             }
 
             AdvertRepository.Delete(advertToDelete);
+            AdvertRepository.Save();
             return Ok();
         }
         

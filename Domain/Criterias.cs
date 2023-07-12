@@ -1,8 +1,9 @@
 ﻿namespace Domain
 {
-    public class Criterias
+    public class Criterias : DBModel
+
     {
-        public int Id { get; set; }
+      
         public string Name { get; set; }  = string.Empty;
     }
 }
