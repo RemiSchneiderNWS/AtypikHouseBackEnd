@@ -88,8 +88,9 @@ namespace AtypikHouseBackEnd.Controllers
             }
             reserveTovalidate.Payment = true;
             reservationRepository.Update(reserveTovalidate);
-            ReservationRepository.Save();
+            reservationRepository.Save();
             return Ok();
         }
+
     }
 }

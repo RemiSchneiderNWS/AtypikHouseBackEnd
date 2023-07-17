@@ -16,6 +16,8 @@ namespace Database
 
         public DbSet<Reservation> Reservations { get; set; }    
 
+        public DbSet<ActivityImage> ActivityImages { get; set; }
+        public DbSet<AdvertImage> AdvertImages { get; set; }
         public AppDbContext() { }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)

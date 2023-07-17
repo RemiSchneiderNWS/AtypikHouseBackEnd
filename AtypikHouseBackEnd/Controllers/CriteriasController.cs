@@ -19,9 +19,9 @@ namespace AtypikHouseBackEnd.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get() { 
-            
-            return Ok();    
+        public ActionResult Get()
+        {
+
         }
     }
 }
