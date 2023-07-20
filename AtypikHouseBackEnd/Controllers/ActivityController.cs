@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Repositories;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Payloads;
 
 namespace AtypikHouseBackEnd.Controllers
 {
@@ -33,19 +34,42 @@ namespace AtypikHouseBackEnd.Controllers
 
         [Authorize]
         [HttpPost]
-        public Activity CreateActivity(Activity activity)
+        public ActionResult<Activity> CreateActivity(ActivityPayload activityPayload)
         {
+            Activity activity = Activities.iniActivity(activityPayload);
+            if (activity.Advert == null)
+            {
+                return NotFound("Annonce affectée introuvable");
+            }
+            if (activity.User == null)
+            {
+                return NotFound("Utilisateur affectée introuvable");
+            }
+            if (activity.Advert.User.Id != UserGuid)
+            {
+                return BadRequest("Vous n'etes pas autorisée à faire cette action")
+            }
             Activities.Add(activity);
             Activities.Save();
-            
+
             return (activity);
         }
 
         [Authorize]
-        [HttpPost]
-        public ActionResult<Activity> UpdateActivity(Activity activity) {
+        [HttpPut("{idActivity}")]
+        public ActionResult<Activity> UpdateActivity(int idActivity,ActivityPayload activityPayload) {
             //TO DO vérification des données activity
-            if(activity.User.Id != UserGuid) {
+            Activity activity = Activities.iniActivity(activityPayload);
+            activity.Id = idActivity;
+            if (activity.Advert == null)
+            {
+                return NotFound("Annonce affectée introuvable");
+            }
+            if (activity.User == null)
+            {
+                return NotFound("Utilisateur affectée introuvable");
+            }
+            if (activity.User.Id != UserGuid) {
                 return BadRequest("Vous n'étes pas autorisé à faire cette action ");
             }
             Activities.Update(activity);    

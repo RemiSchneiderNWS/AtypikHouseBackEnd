@@ -21,8 +21,17 @@ public class UserRepository : Repository<User>
    public User Login(LogUser userLog) 
    {
        
-       User user = Set.Where(user => (user.Mail == userLog.Mail) && (user.Password == userLog.Password)).FirstOrDefault();
+       User user = Set.Where(user => (user.Mail.ToLowerInvariant() == userLog.Mail.ToLowerInvariant()) && (user.Password == userLog.Password)).FirstOrDefault();
        
        return (user);
    }
+    public bool UserExist(string mail)
+    {
+        User user  = Set.FirstOrDefault( user => user.Mail == mail);
+        if(user == null)
+        {
+            return true;
+        }
+        return false;
+    }
 }

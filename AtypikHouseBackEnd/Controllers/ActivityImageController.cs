@@ -34,9 +34,14 @@ namespace AtypikHouseBackEnd.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult createImageForActivity(ActivityImagePayload activityImage)
+        public ActionResult createImageForActivity(ActivityImagePayload activityImagePayload)
         {
-            activityImageRepository.Add(activityImageRepository.iniActivityImage(activityImage));
+            ActivityImage activityImage = activityImageRepository.iniActivityImage(activityImagePayload);
+            if(activityImage.Activity == null )
+            {
+                return NotFound("Activitée associée Introuvable");
+            }
+            activityImageRepository.Add(activityImage);
             activityImageRepository.Save();
             return Ok();
         }

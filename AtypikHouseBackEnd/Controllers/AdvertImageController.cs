@@ -33,8 +33,12 @@ namespace AtypikHouseBackEnd.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult CreateImageForAdvert(AdvertImagePayload image)
-        {           
-            advertImageRepository.Add(advertImageRepository.iniAdvertImage(image));
+        {
+            AdvertImage advertImage = advertImageRepository.iniAdvertImage(image);
+            if(advertImage.Advert == null ) { 
+                return NotFound("Annonce associée introuvable");
+            }
+            advertImageRepository.Add(advertImage);
             advertImageRepository.Save();
             return Ok();
         }

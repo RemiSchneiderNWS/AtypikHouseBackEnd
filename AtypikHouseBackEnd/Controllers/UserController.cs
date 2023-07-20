@@ -36,7 +36,7 @@ namespace AtypikHouseBackEnd.Controllers
         }
 
         [HttpPost]
-        public bool CreateUser(CreateUserPayload user)
+        public ActionResult<bool> CreateUser(CreateUserPayload user)
         {
             if (!ModelState.IsValid)
                 return false;
@@ -49,6 +49,10 @@ namespace AtypikHouseBackEnd.Controllers
 
                  return BadRequest("L'adresse e-mail n'est pas au bon format.");
              }*/
+            if (UserRepo.UserExist(user.Mail.ToLowerInvariant()))
+            {
+                return BadRequest("Email déjà utilisé");
+            }
             UserRepo.Add(user.iniUser());
             UserRepo.Save();
             return true;

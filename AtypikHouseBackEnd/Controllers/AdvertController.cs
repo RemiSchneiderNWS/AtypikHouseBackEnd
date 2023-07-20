@@ -1,6 +1,7 @@
 ﻿using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Payloads;
 using Repositories;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,8 +40,9 @@ namespace AtypikHouseBackEnd.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult<Advert> PostAdvert(Advert advert)
+        public ActionResult<Advert> PostAdvert(AdvertPayload advertPayload)
         {
+            Advert advert = AdvertRepository.iniAdvert(advertPayload); 
             advert.User = UserRepository.FromId(UserGuid);
             AdvertRepository.Add(advert);
             AdvertRepository.Save();
@@ -48,11 +50,14 @@ namespace AtypikHouseBackEnd.Controllers
         }
 
         [Authorize]
-        [HttpPost("updateAdvert")]
-        public ActionResult<Advert> UpdateAdvert(Advert advert)
+        [HttpPut("{id}")]
+        public ActionResult<Advert> UpdateAdvert(int id,AdvertPayload advertPayload)
         {
-            Advert advertUpdated = AdvertRepository.FromId(advert.Id);
-            if(advertUpdated.User.Id != UserGuid)
+            Advert OldAdvert = AdvertRepository.FromId(id);
+            Advert advertUpdated = AdvertRepository.iniAdvert(advertPayload);
+            advertUpdated.User = OldAdvert.User;
+            advertUpdated.Created_at = OldAdvert.Created_at;
+            if (advertUpdated.User.Id != UserGuid)
             {
                 return BadRequest("Vous n'etes pas Autorisé à faire cette action");
             }
@@ -60,18 +65,7 @@ namespace AtypikHouseBackEnd.Controllers
             if(advertUpdated == null) {
                 return BadRequest("Annonce introuvable");
             }
-            advertUpdated.Name= advert.Name;
-            advertUpdated.Type  = advert.Type;  
-            advertUpdated.Tenants = advert.Tenants;
-            advertUpdated.Status = advert.Status;
-            advertUpdated.Up = advert.Up;
-            advertUpdated.Adress = advert.Adress;
-            advertUpdated.City = advert.City;
-            advertUpdated.Postal = advert.Postal;
-            advertUpdated.Price = advert.Price; 
-            advertUpdated.Describe  = advert.Describe;  
-            advertUpdated.CriLimit = advert.CriLimit;
-
+          
             AdvertRepository.Update(advertUpdated);
             AdvertRepository.Save();
             return Ok(advertUpdated);

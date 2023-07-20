@@ -1,6 +1,7 @@
 ﻿using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Payloads;
 using Repositories;
 using System.Security.Claims;
 
@@ -47,8 +48,9 @@ namespace AtypikHouseBackEnd.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult createReserve(Reservation reservation)
+        public ActionResult createReserve(ReservationPayload reservationPayload)
         {
+            Reservation reservation = reservationRepository.ini
             reservationRepository.Add(reservation);
             reservationRepository.Save();
             return Ok();
