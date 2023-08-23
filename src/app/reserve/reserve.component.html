@@ -1,0 +1,134 @@
+<div class="example-container">
+    <div class="title">Réservation</div>
+    <div style="width: 100%; display: flex; flex-direction: column">
+        <img
+            *ngIf="mainImageUrl !== undefined"
+            src="{{ mainImageUrl }}"
+            class="annoucement-image"
+            alt=""
+        />
+        <mat-spinner
+            *ngIf="mainImageUrl === undefined"
+            class="annoucement-image"
+        ></mat-spinner>
+        <div
+            class="annoucement-image"
+            style="display: flex; align-items: center"
+        >
+            <div *ngFor="let image of imagesURL; let i = index">
+                <img
+                    *ngIf="
+                        imagesURL[i] !== undefined &&
+                        imagesURL[i] !== mainImageUrl
+                    "
+                    (click)="onSelect(imagesURL[i])"
+                    src="{{ imagesURL[i] }}"
+                    class="thumbnails"
+                    alt=""
+                />
+                <img
+                    *ngIf="
+                        imagesURL[i] !== undefined &&
+                        imagesURL[i] === mainImageUrl
+                    "
+                    src="{{ imagesURL[i] }}"
+                    class="thumbnailsSelected"
+                    alt=""
+                />
+                <mat-spinner
+                    *ngIf="imagesURL[i] === undefined"
+                    class="annoucement-image"
+                ></mat-spinner>
+            </div>
+        </div>
+    </div>
+    <div class="advertTitle">{{ advert.name }}</div>
+    <p class="description">
+        {{ advert.describe }}
+    </p>
+    <div class="price">
+        Prix de la réservation à la journée: {{ advert.price }} €
+    </div>
+
+    <h3 class="price">Capacité d'accueil: {{ advert.tenants }} personne(s)</h3>
+
+    <form
+        [formGroup]="datesReserve"
+        (ngSubmit)="onSubmit(datesReserve.value)"
+        class="example-form-field"
+    >
+        <div>
+            <div class="price">Indiquez le nombre de locataire:</div>
+            <mat-form-field
+                appearance="fill"
+                style="width: 100%"
+                (change)="onChangeTenantsFields(datesReserve.value)"
+            >
+                <mat-label>Saisissez le nombre de locataire</mat-label>
+                <input
+                    matInput
+                    placeholder="Ex: 4"
+                    formControlName="nbTenants"
+                    maxlength="3"
+                    required
+                />
+            </mat-form-field>
+
+            <mat-error
+                class="error-input"
+                *ngIf="
+                    datesReserve.get('nbTenants').errors &&
+                    datesReserve.get('nbTenants').hasError('required') &&
+                    datesReserve.get('nbTenants').touched
+                "
+            >
+                Vous devez saisir le nombre de locataire
+            </mat-error>
+            <mat-error class="error-input" *ngIf="errorNbTenants">
+                nombre de locataire supérieur à la capacité
+            </mat-error>
+            <div class="price">
+                Indiquez une periode pour votre réservation:
+            </div>
+            <mat-form-field appearance="fill" style="width: 100%">
+                <mat-label>Selectionnez la durée de votre location</mat-label>
+                <mat-date-range-input
+                    [dateFilter]="myFilter"
+                    [min]="minDate"
+                    [max]="maxDate"
+                    [rangePicker]="campaignOnePicker"
+                >
+                    <input
+                        matStartDate
+                        placeholder="Start date"
+                        formControlName="start"
+                    />
+                    <input
+                        matEndDate
+                        placeholder="End date"
+                        formControlName="end"
+                    />
+                </mat-date-range-input>
+                <mat-datepicker-toggle
+                    matSuffix
+                    [for]="campaignOnePicker"
+                ></mat-datepicker-toggle>
+                <mat-date-range-picker
+                    color="#339e33"
+                    #campaignOnePicker
+                ></mat-date-range-picker>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button
+                mat-raised-button
+                [disabled]="datesReserve.invalid || errorNbTenants"
+                type="submit"
+                class="submit"
+            >
+                Valider
+            </button>
+        </div>
+    </form>
+</div>

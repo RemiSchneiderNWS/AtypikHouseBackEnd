@@ -1,0 +1,132 @@
+<div class="example-container newAdvert-container">
+
+    <form [formGroup]="NewAdvertForm" class="register-form" (ngSubmit)="onSubmit(NewAdvertForm.value)">
+        <div class="form-text">Nouvelle annonce</div>
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+                <mat-label>Titre de l'annonce</mat-label>
+                <input matInput placeholder="EX: Tipi au bord de la rivière" formControlName="titre" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewAdvertForm.get('titre').errors &&
+            NewAdvertForm.get('titre').hasError('required') && NewAdvertForm.get('titre').touched">Aucun titre saisi
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Type de bien</mat-label>
+                <input matInput placeholder="EX: Tipi" formControlName="type" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewAdvertForm.get('type').errors &&
+            NewAdvertForm.get('type').hasError('required') && NewAdvertForm.get('type').touched">Aucun type saisi
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre maximum de locataire(s)</mat-label>
+                <input type="number" onKeyUp="if(this.value>99){this.value='99';}else if(this.value<0){this.value='0';}"
+                    matInput min="0" max="100" placeholder="Ex: 5" formControlName="max" required>
+
+            </mat-form-field>
+
+            <div class="error-input" *ngIf="NewAdvertForm.get('max').errors &&
+            NewAdvertForm.get('max').hasError('required')  && NewAdvertForm.get('max').touched">Aucun nombre saisi
+            </div>
+            <div class="error-input" *ngIf="NewAdvertForm.get('max').errors &&
+            !NewAdvertForm.get('max').hasError('required')  && NewAdvertForm.get('max').touched"> Veuillez saisir
+                uniquement des chiffres
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Numéro et nom de rue du logement</mat-label>
+                <input matInput placeholder="EX: 10 rue de la republique" formControlName="adress" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewAdvertForm.get('adress').errors &&
+            NewAdvertForm.get('adress').hasError('required') && NewAdvertForm.get('adress').touched">Aucune adresse
+                saisi
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Ville du logement</mat-label>
+                <input matInput placeholder="EX: Lyon" formControlName="city" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewAdvertForm.get('city').errors &&
+            NewAdvertForm.get('city').hasError('required') && NewAdvertForm.get('city').touched">Aucune ville saisi
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Code postal</mat-label>
+                <input matInput
+                    onKeyUp="if(this.value>99999){this.value='99999';}else if(this.value<0){this.value='0';}"
+                    type="number" min="0" max="100000" placeholder="EX: 69000" formControlName="adv_postal" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewAdvertForm.get('adv_postal').errors &&
+            NewAdvertForm.get('adv_postal').hasError('required') && NewAdvertForm.get('adv_postal').touched">Aucun code
+                postal saisi
+            </div>
+            <div class="error-input" *ngIf="NewAdvertForm.get('adv_postal').errors &&
+            !NewAdvertForm.get('adv_postal').hasError('required')  && NewAdvertForm.get('adv_postal').touched">
+                Veuillez saisir
+                uniquement des chiffres
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Prix de la journée</mat-label>
+                <input type="number"
+                    onKeyUp="if(this.value>99999){this.value='99999';}else if(this.value<0){this.value='0';}" matInput
+                    min="0" max="100000" placeholder="EX: 35" formControlName="adv_price" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewAdvertForm.get('adv_price').errors &&
+            NewAdvertForm.get('adv_price').hasError('required') && NewAdvertForm.get('adv_price').touched">Aucun prix
+                saisi
+            </div>
+            <div class="error-input" *ngIf="NewAdvertForm.get('adv_price').errors &&
+            !NewAdvertForm.get('adv_price').hasError('required')  && NewAdvertForm.get('adv_price').touched">
+                Veuillez saisir
+                uniquement des chiffres
+            </div>
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea style="resize: none;" matInput formControlName="describe"></textarea>
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewAdvertForm.get('describe').errors &&
+            NewAdvertForm.get('describe').hasError('required')  && NewAdvertForm.get('describe').touched">
+                Veuillez saisir
+                une description
+            </div>
+            <mat-label>Visibilité de l'annonce</mat-label>
+            <mat-slide-toggle formControlName="dispo">non visible/visible</mat-slide-toggle>
+
+            <div class="upload-field">
+                <mat-label>Ajouter des photos ({{selectedFiles.length}}/3)</mat-label>
+                <div style="display: flex;">
+                    <div class="selectedImages" *ngFor="let image of selectedFiles; let i = index">
+                        <img src={{filesSelectedURL[i]}} alt="">
+                        <span (click)="onClickDelete(i)" class="deleteBtn">&times;</span>
+                    </div>
+
+                </div>
+                <div>
+                    <div *ngIf="selectedFiles.length < 3" style="display: flex;">
+                        <label class="labelInputImages" for="inputImages">+ Ajouter une
+                            image</label>
+                        <div class="selectedFile">Image selectionnée : {{ fileName.length > 0 ? (fileName) : null
+                            }}
+                        </div>
+                    </div>
+                    <input class="inputImages" type="file" id="inputImages" accept="image/*"
+                        (change)="onFileSelected($event)" />
+                </div>
+
+            </div>
+
+            <div *ngIf="photoEmpty" style="color: red;">Vous devez avoir au moin selectionné une photo pour poster
+                une annonce </div>
+            <button class="submitBtn" mat-raised-button style="background-color: #339e33; color: white;" type="submit"
+                [disabled]="NewAdvertForm.invalid">Créer l'annonce</button>
+
+
+        </div>
+    </form>
+</div>

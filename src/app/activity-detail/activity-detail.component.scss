@@ -1,0 +1,137 @@
+@font-face {
+    font-family: "gothic_sans_ms";
+    src: url("/assets/Police_Ecriture/GOTHIC.TTF");
+}
+
+@font-face {
+    font-family: "gothic_bold";
+    src: url("/assets/Police_Ecriture/GOTHICB.TTF");
+}
+.containerAnnouncement {
+    vertical-align: middle;
+    margin: auto;
+    width: 80%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    //margin-bottom: 100px;
+    margin-top: 2vh;
+    padding: 20px;
+}
+.annoucement-image {
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title-center {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+.thumbnails {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.thumbnailsSelected {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: solid;
+}
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #339e33;
+}
+@media (min-width: 768px) {
+    .annoucement-image {
+        width: 50%;
+    }
+
+    .activity {
+        width: 21vw;
+        margin: 2vh 3vw;
+    }
+
+    .commentary-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .commentary-presentation {
+        width: 45%;
+        margin: 0 2vw;
+    }
+
+    .commentary-form {
+        width: 50%;
+    }
+    .thumbnails {
+        width: 75px;
+        height: 75px;
+    }
+    .thumbnailsSelected {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media (min-width: 992px) {
+    .containerAnnouncement {
+        width: 70%;
+    }
+
+    .annoucement-image {
+        width: 40%;
+    }
+
+    .activity-image {
+        width: 60%;
+        margin: auto;
+    }
+
+    .activity {
+        width: 19vw;
+        margin: 2vh 2vw;
+    }
+
+    .commentary-presentation {
+        width: 40%;
+    }
+
+    .commentary-form {
+        width: 30%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .annoucement-image {
+        width: 30%;
+    }
+
+    .commentary-presentation {
+        width: 27%;
+    }
+    .thumbnails {
+        width: 100px;
+        height: 100px;
+    }
+    .thumbnailsSelected {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .annoucement-image {
+        width: 30%;
+    }
+}

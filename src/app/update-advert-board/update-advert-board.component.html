@@ -1,0 +1,145 @@
+<div class="containerAnnouncement">
+    <div style="display: flex">
+        <mat-icon>undo</mat-icon>
+        <p style="cursor: pointer; margin: 0 0 2vh;" (click)="back()" class="back">Retour</p>
+    </div>
+    <div class="title-annoucement">
+        <h1>Modification de l'annonce</h1>
+    </div>
+
+    <div style="width: 100%; display: flex; flex-direction: column">
+        <img *ngIf="mainImageUrl !== undefined " src="{{mainImageUrl}}" class="annoucement-image" alt="">
+        <mat-spinner *ngIf="mainImageUrl === undefined
+         " class="annoucement-image"></mat-spinner>
+        <div class="annoucement-image" style="display: flex;">
+            <div *ngFor="let image of imagesURL; let i = index">
+                <img *ngIf="imagesURL[i] !== undefined && imagesURL[i] !== mainImageUrl"
+                    (click)="onSelect(imagesURL[i])" src="{{imagesURL[i]}}" class="thumbnails" alt="">
+                <img *ngIf="imagesURL[i] !== undefined && imagesURL[i] === mainImageUrl " src="{{imagesURL[i]}}"
+                    class="thumbnailsSelected" alt="">
+                <mat-spinner *ngIf="imagesURL[i] === undefined" class="annoucement-image"></mat-spinner>
+                <button mat-raised-button class="updateButton" *ngIf="imagesURL.length > 1" (click)="deleteImage(i)"
+                    style="background-color: #339e33; color: white;">supprimer</button>
+                <div class="planning">
+                </div>
+            </div>
+            <div *ngIf="imagesURL.length < 3 && imagesURL[0] !== undefined">
+                <label class="thumbnails Addthumbnail" for="inputImages">&nbsp;
+                </label>
+                <input class="inputImages" type="file" id="inputImages" accept="image/*"
+                    (change)="onFileSelected($event)" />
+            </div>
+        </div>
+
+        <div *ngIf='imagesURL.length === 3' class="centerElement">nombre maximum de photos atteint </div>
+
+
+
+        <div style="display: flex; flex-direction: column">
+            <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile>
+                    <div>
+                        <div class="description">
+                            <h2>{{ advert.name }}</h2>
+                            <p>
+                                {{ advert.adress }}, {{ advert.postal }}
+                                {{ advert.city }}
+                            </p>
+                        </div>
+                        <p class="description">
+                            {{advert.describe}}
+                        </p>
+                        <h3>
+                            Prix : {{ advert.price }} €/ jour
+                        </h3>
+                        <h3>Capacité d'accueil: {{ advert.tenants }} personne(s)</h3>
+
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <div>
+                        <h2>Informations du propriétaire :</h2>
+                        <div>
+                            <button *ngIf="!mailVisible" (click)="setMailVisible()" mat-raised-button> Voir l'adresse
+                                mail</button>
+                            <div *ngIf="mailVisible">Adresse mail: {{ advert.user.mail }}</div>
+                        </div>
+
+                        <div>
+                            <button *ngIf="!phoneVisible" (click)="setPhoneVisible()" mat-raised-button> Voir le numéro
+                                de
+                                téléphone
+                            </button>
+                            <div *ngIf="phoneVisible"> Numéro de téléphone : +33{{ advert.user.phone}}</div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+
+            </mat-grid-list>
+            <button mat-raised-button class="updateButton" style="background-color: #339e33; color: white;"
+                routerLink="/updateAdvert/{{advert[0].adv_id}}">Modifier les informations</button>
+            <div class="planning">
+                <h2>
+                    Planning
+                </h2>
+                <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [minDate]="minDate" [dateFilter]="myFilter">
+                    </mat-calendar>
+                </mat-card>
+                <h3>Logement Indisponible ?</h3>
+                <form [formGroup]="datesReserve" (ngSubmit)="onSubmit(datesReserve.value)" class="example-form-field">
+                    <mat-form-field class="fielDatePicker" appearance="fill">
+                        <mat-label>Selectionnez la période</mat-label>
+                        <mat-date-range-input [dateFilter]="myFilter" [min]="minDatePicker" [max]="maxDate"
+                            [rangePicker]="campaignOnePicker">
+                            <input matStartDate placeholder="Start date" formControlName="start">
+                            <input matEndDate placeholder="End date" formControlName="end">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                    </mat-form-field>
+                    <div><button mat-raised-button [disabled]="datesReserve.invalid" type="submit"
+                            class="submit">Valider</button>
+                    </div>
+                </form>
+            </div>
+
+            <div style="margin: 50px">
+                <h2 style="display:flex;">Activités à proximité : </h2>
+                <div style="overflow: auto">
+                    <div class="activity-list">
+                        <div *ngFor="let activity of listActivity; let i = index;">
+                            <div class="activity">
+                                <img src="{{mainActivityImagesUrl[i]}}" class="activity-image" alt="">
+                                <div class="activity-presentation">
+                                    <p class="activity-title">{{activity.name}}</p>
+                                    <p class="activity-presentation-under">{{activity.act_adress}},
+                                        {{activity.city}}
+                                    </p>
+                                    <p class="activity-presentation-under">{{activity.describe}}</p>
+                                    <button mat-raised-button
+                                        routerLink="/activity/{{activity.id}}/{{activity.advert.id}}"
+                                        class="submit">Informations</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button mat-raised-button class="updateButton" style="background-color: #339e33; color: white;"
+                    routerLink="/newActivity/{{advert.id}}">+
+                    Ajouter une activité</button>
+                <div>
+                    <h2>Commentaires de l'annonce :</h2>
+                    <p>* Les commentaires peuvent être uniquement posté par les personnes ayant déjà loué ce bien </p>
+
+                </div>
+                <div class="commentary-list">
+                    <div *ngFor="let commentary of listCommentary; let i = index;" class="commentary-presentation">
+                        <p class="commentary-title">{{commentary.user.name}} {{commentary.user.lastName}}</p>
+                        <p class="commentary-presentation-under">{{commentary.text}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

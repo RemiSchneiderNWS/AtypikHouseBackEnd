@@ -1,0 +1,75 @@
+<div class="container">
+
+    <img class="logo" src="/assets/images/Group_1.svg" />
+    <mat-grid-list class="mat-grid" cols=" 2" rowHeight="100px">
+        <mat-grid-tile *ngFor="let tile of tiles; let index = index" [colspan]="tile.cols" [rowspan]="tile.rows"
+            [style.background]="tile.color">
+
+            <h1 *ngIf="index == 0" class="title-h1">{{tile.text}} <span style="color:#339e33;">atypique
+                </span>
+            </h1>
+            <button *ngIf="index == 1" style="margin-right: 2px;" routerLink="/search" mat-raised-button
+                class="btn btn-left">{{tile.text}}
+            </button>
+            <button *ngIf="index==2 && !this.statusUser.isAuth" routerLink="/connection"
+                style="color: white;border: 3px solid white; margin-left: 2px;" mat-stroked-button
+                class="btn btn-right">{{tile.text}}</button>
+            <button *ngIf="index==2 && this.statusUser.isAuth" routerLink="/NewAdvert"
+                style="color: white;border: 3px solid white; margin-left: 2px;" mat-stroked-button
+                class="btn btn-right">{{tile.text}}</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="presentation">
+        <h2> Atypik House c'est quoi ?</h2>
+        <p> Atypik House est une plateforme vous permettant de louer ou mettre en location un
+            logement atypique</p>
+        <hr>
+    </div>
+
+</div>
+<div class="band">
+    <div> Découvrez nos locations à la une:</div>
+</div>
+
+<div class="home">
+    <mat-grid-list cols="2" rowHeight="33.33%" class="rectangle">
+        <mat-grid-tile class="square"
+            style="background-image: url('/assets/images/image 2.png'); background-size: cover; background-repeat: no-repeat; background-position: center">
+        </mat-grid-tile>
+        <mat-grid-tile class="square" style="box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);">
+            <div class="square-presentation">
+                <div class="square-icon">
+                    <img src=" /assets/images/image 7.svg" alt="">
+                </div>
+                <p class="square-texte">Retrouvez tous les logements proches de la plage</p>
+                <button routerLink="/search" mat-raised-button color="primary" class="square-bouton">Voir Plus</button>
+            </div>
+
+        </mat-grid-tile>
+        <mat-grid-tile class="square" style="box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);">
+            <div class="square-presentation">
+                <div class="square-icon">
+                    <img src=" /assets/images/image 6.svg" alt="">
+                </div>
+                <p class="square-texte">Retrouvez tous les logements à la montagnes</p>
+                <button routerLink="/search" mat-raised-button color="primary" class="square-bouton">Voir Plus</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile class="square"
+            style="background-image: url('/assets/images/image 3.png'); background-size: cover; background-repeat: no-repeat; background-position: center">
+        </mat-grid-tile>
+        <mat-grid-tile class="square"
+            style="background-image: url('/assets/images/image 4.png'); background-size: cover; background-repeat: no-repeat; background-position: center">
+        </mat-grid-tile>
+        <mat-grid-tile class="square" style="box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);">
+            <div class="square-presentation">
+                <div class="square-icon">
+                    <img src=" /assets/images/image 5.svg" alt="">
+                </div>
+                <p class="square-texte">Retrouvez tous les logements à la campagne</p>
+                <button routerLink="/search" mat-raised-button color="primary" class="square-bouton">Voir Plus</button>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

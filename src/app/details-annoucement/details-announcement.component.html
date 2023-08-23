@@ -1,0 +1,101 @@
+<div class="containerAnnouncement">
+    <div style="display: flex">
+        <mat-icon>undo</mat-icon>
+        <p style="cursor: pointer; margin: 0 0 2vh;" (click)="back()" class="back">Retour</p>
+    </div>
+
+    <div style="width: 100%; display: flex; flex-direction: column">
+
+        <img *ngIf="mainImageUrl !== undefined " src="{{mainImageUrl}}" class="annoucement-image" alt="">
+        <mat-spinner *ngIf="mainImageUrl === undefined
+         " class="annoucement-image"></mat-spinner>
+        <div class="annoucement-image" style="display: flex; align-items: center;">
+            <div *ngFor="let image of imagesURL; let i = index">
+                <img *ngIf="imagesURL[i] !== undefined && imagesURL[i] !== mainImageUrl"
+                    (click)="onSelect(imagesURL[i])" src="{{imagesURL[i]}}" class="thumbnails" alt="">
+                <img *ngIf="imagesURL[i] !== undefined && imagesURL[i] === mainImageUrl " src="{{imagesURL[i]}}"
+                    class="thumbnailsSelected" alt="">
+                <mat-spinner *ngIf="imagesURL[i] === undefined
+            " class="annoucement-image"></mat-spinner>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button *ngIf="this.statusUser.isAuth && notOwner" routerLink="/Reserve/{{id}}" mat-raised-button
+            class="bouton-announcement">Réserver
+        </button>
+    </div>
+   
+    <div style="display: flex; flex-direction: column;">
+        <div style="margin: 10px; width: 500px; margin: auto;">
+            <div class="description">
+                <h2>{{ advert.name }}</h2>
+                <p>
+                    {{ advert.adress }}, {{ advert.postal }}
+                    {{ advert.city }}
+                </p>
+            </div>
+            <p class="description">
+                {{advert.describe}}
+            </p>
+            <h3>
+                Prix : {{ advert.price }} €/ jour
+            </h3>
+            <h3>Capacité d'accueil: {{ advert.tenants }} personne(s)</h3>
+            <h2>Informations du propriétaire :</h2>
+            <div>
+                <button *ngIf="!mailVisible" (click)="setMailVisible()" mat-raised-button> Voir l'adresse mail</button>
+                <div *ngIf="mailVisible">Adresse mail: {{ advert.user.mail }}</div>
+            </div>
+
+            <div>
+                <button *ngIf="!phoneVisible" (click)="setPhoneVisible()" mat-raised-button> Voir le numéro de
+                    téléphone
+                </button>
+                <div *ngIf="phoneVisible"> Numéro de téléphone : +33{{ advert.user.phone}}</div>
+            </div>
+        </div>
+        <h2>Activités à proximité :</h2>
+        <div *ngIf="isActivitiesEmpty"> Aucune activitée trouvé</div>
+        <div style="overflow: auto">
+            <div class="activity-list">
+                <div *ngFor="let activity of listActivity; let i = index;">
+                    <div class="activity">
+                        <img src="{{mainActivityImagesUrl[i]}}" class="activity-image" alt="">
+                        <mat-spinner *ngIf="mainActivityImagesUrl[i] === undefined
+                        " class="annoucement-image"></mat-spinner>
+                        <div class="activity-presentation">
+                            <p class="activity-title">{{activity.name}}</p>
+                            <p class="activity-presentation-under">{{activity.adress}}, {{activity.city}} </p>
+                            <p class="activity-presentation-under">{{activity.describe}}</p>
+                            <button mat-raised-button routerLink="/activity/{{activity.act_id}}/{{activity.act_adv_id}}"
+                                class="submit-btn">Informations</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Commentaires de l'annonce :</h2>
+            <p>* Les commentaires peuvent être uniquement posté par les personnes ayant déjà loué ce bien </p>
+            <form class="commentary-form" *ngIf="this.statusUser.isAuth && userCanComment" [formGroup]="NewCommentary"
+                (ngSubmit)="onSubmit(NewCommentary.value)">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Laisser un commentaire</mat-label>
+                    <input type="tel" matInput formControlName="content">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                </mat-form-field>
+                <button type="submit" class="submit-btn" mat-raised-button> Ajouter le commentaire </button>
+            </form>
+        </div>
+        <div *ngIf ="noCommmentaries"> Aucun commantaire pour cette annonce</div>
+        <div class="commentary-list">
+            <div *ngFor="let commentary of listCommentary; let i = index;" class="commentary-presentation">
+                <p class="commentary-title">{{commentary.user.firstName}} {{commentary.user.lastName}}</p>
+                <p class="commentary-presentation-under">{{commentary.text}}</p>
+            </div>
+        </div>
+    </div>
+    
+</div>

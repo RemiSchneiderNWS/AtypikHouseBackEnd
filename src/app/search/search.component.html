@@ -1,0 +1,72 @@
+<div class="example-container">
+    <div class="title">Rechercher un logement</div>
+    <div>
+        <div class="form-group search-field-group" style="display: flex; flex-direction: row">
+            <mat-form-field (change)="onSetField($event)" class="search-field" appearance="fill">
+                <mat-label>Recherche par nom ou par ville</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <button (click)="onSearch()" mat-raised-button class="search-btn">
+                Rechercher
+            </button>
+            <div class="dropdown" [formGroup]="CriteriaForm">
+                <span style="margin: auto">Filtre</span>
+                <div class="dropdown-content" formControlName="dispo">
+                    <div *ngFor="let criteria of listCriterias; let i = index;">
+                        <mat-label>{{criteria.name}}</mat-label>
+                        <mat-slide-toggle (change)="onChange($event, criteria.id)"></mat-slide-toggle>
+                    </div>
+                    <button mat-raised-button style="background-color: #339e33; color: white; margin-top: 20px;"
+                        (click)="onSubmit()">
+                        Valider
+                    </button>
+                </div>
+            </div>
+            <button *ngIf="this.statusUser.isAuth" mat-raised-button routerLink="/NewAdvert" class="addAdvert-btn">
+                Déposer une
+                annonce
+            </button>
+        </div>
+    </div>
+
+
+
+    <div *ngFor="let advert of listAdverts; let i = index;">
+
+        <div *ngIf="advert.up" class="annoucement" routerLink="/detail/{{advert.id}}">
+            <img *ngIf="imagesURL[i] !== undefined " src="{{imagesURL[i]}}" class="annoucement-image" alt="">
+            <mat-spinner *ngIf="imagesURL[i] === undefined " class="annoucement-image"></mat-spinner>
+            <div class="annoucement-presentation">
+                <p class="annoucement-title">{{advert.name}} <span *ngIf="advert.up" class="top-annoucement"> à
+                        la une</span>
+                </p>
+                <p class="annoucement-presentation-under">{{advert.adress}}, {{advert.city}} </p>
+                <p class="annoucement-presentation-under">Prix : {{advert.price}} €/ jour</p>
+
+
+            </div>
+
+
+        </div>
+        <hr *ngIf="advert.up" class="annoucement-hr">
+    </div>
+    <div *ngIf="isEmpty" class="no-annoucement"> Aucune annonce trouvée </div>
+    <div *ngFor="let advert of listAdverts; let i = index;">
+
+        <div *ngIf="!advert.up" class="annoucement" routerLink="/detail/{{advert.id}}">
+            <img *ngIf="imagesURL[i] !== undefined " src="{{imagesURL[i]}}" class="annoucement-image" alt="">
+            <mat-spinner *ngIf="imagesURL[i] === undefined " class="annoucement-image"></mat-spinner>
+            <div class="annoucement-presentation">
+                <p class="annoucement-title">{{advert.name}} <span *ngIf="advert.up" class="top-annoucement"> à
+                        la une</span>
+                </p>
+                <p class="annoucement-presentation-under">{{advert.adress}}, {{advert.city}} </p>
+                <p class="annoucement-presentation-under">Prix : {{advert.price}} €/ jour</p>
+            </div>
+
+
+        </div>
+        <hr *ngIf="!advert.up" class="annoucement-hr">
+    </div>
+
+</div>

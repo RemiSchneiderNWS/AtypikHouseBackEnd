@@ -1,0 +1,182 @@
+@font-face {
+    font-family: "gothic_sans_ms";
+    src: url("/assets/Police_Ecriture/GOTHIC.TTF");
+}
+
+@font-face {
+    font-family: "gothic_bold";
+    src: url("/assets/Police_Ecriture/GOTHICB.TTF");
+}
+
+.annoucement-image {
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.thumbnails {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.thumbnailsSelected {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: solid;
+}
+
+.example-container {
+    background-color: white;
+    height: fit-content;
+    width: 80%;
+    margin: auto;
+    border-radius: 15px;
+    margin-top: 2vh;
+    padding: 20px;
+}
+
+.title {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "gothic_bold";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    text-align: center;
+    padding: 10px;
+}
+
+.annoucement-image {
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+}
+
+.price {
+    font-family: "gothic_sans_ms";
+    font-size: 15px;
+    padding: 10px;
+}
+
+.submit {
+    display: flex;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.description {
+    font-family: "gothic_sans_ms";
+    padding: 10px;
+}
+
+.annoucement {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+td {
+    justify-content: center;
+    margin-left: 50px;
+}
+
+table {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+}
+
+.name {
+    margin-left: 10px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 31px;
+    margin-bottom: 0;
+    color: #7d7d7d;
+}
+
+.description {
+    margin-top: 0;
+}
+
+.paiementBtn {
+    width: 200px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.paiementTexte {
+    display: flex;
+    width: 200px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-family: "gothic_bold";
+}
+
+@media (min-width: 576px) {
+    .example-container {
+        margin-top: 4vh;
+    }
+
+    .annoucement-image {
+        width: 60%;
+    }
+}
+
+@media (min-width: 768px) {
+    .example-container {
+        min-height: 67vh;
+    }
+
+    .annoucement-image {
+        width: 30%;
+    }
+
+    .annoucement {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .example-container {
+        width: 60%;
+    }
+
+    .annoucement-image {
+        width: 20%;
+    }
+
+}
+
+@media (min-width: 1200px) {
+
+    .annoucement {
+        margin-left: 8vw;
+        margin-right: 8vw;
+    }
+
+    .example-container {
+        width: 50%;
+        margin-bottom: 25vh;
+    }
+
+}

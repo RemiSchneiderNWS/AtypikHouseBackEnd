@@ -1,0 +1,78 @@
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<div class="example-container">
+    <div class="title">Confirmation</div>
+
+    <div style="width: 100%; display: flex; flex-direction: column">
+        <img
+            *ngIf="mainImageUrl !== undefined"
+            src="{{ mainImageUrl }}"
+            class="annoucement-image"
+            alt=""
+        />
+        <mat-spinner
+            *ngIf="mainImageUrl === undefined"
+            class="annoucement-image"
+        ></mat-spinner>
+        <div
+            class="annoucement-image"
+            style="display: flex; align-items: center"
+        >
+            <div *ngFor="let image of imagesURL; let i = index">
+                <img
+                    *ngIf="
+                        imagesURL[i] !== undefined &&
+                        imagesURL[i] !== mainImageUrl
+                    "
+                    (click)="onSelect(imagesURL[i])"
+                    src="{{ imagesURL[i] }}"
+                    class="thumbnails"
+                    alt=""
+                />
+                <img
+                    *ngIf="
+                        imagesURL[i] !== undefined &&
+                        imagesURL[i] === mainImageUrl
+                    "
+                    src="{{ imagesURL[i] }}"
+                    class="thumbnailsSelected"
+                    alt=""
+                />
+                <mat-spinner
+                    *ngIf="imagesURL[i] === undefined"
+                    class="annoucement-image"
+                ></mat-spinner>
+            </div>
+        </div>
+    </div>
+    <div class="annoucement">
+        <div>
+            <p class="name">{{ advert.name }}</p>
+            <p class="description">
+                {{ advert.describe }}
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <table>
+            <th>
+                <h3>Détails du prix</h3>
+            </th>
+            <tr>
+                <td>Prix à la journée:</td>
+                <td>{{ price }} €</td>
+            </tr>
+            <tr>
+                <td>Nombre de jour réservé:</td>
+                <td>{{ day }}</td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td>{{ total }} €</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3 class="paiementTexte">Payer avec Paypal :</h3>
+    <div #paypal class="paiementBtn"></div>
+</div>

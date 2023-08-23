@@ -1,0 +1,35 @@
+<div class="example-container">
+
+
+    <div *ngFor="let reserve of listReserves; let i = index;">
+
+        <div class="annoucement">
+            <img *ngIf="imagesURL[i] !== undefined " src="{{imagesURL[i]}}" class="annoucement-image" alt="">
+            <mat-spinner *ngIf="imagesURL[i] === undefined " class="annoucement-image"></mat-spinner>
+            <div class="annoucement-presentation">
+                <p class="annoucement-title">{{reserve.advert.name}} </p>
+                <p class="annoucement-presentation-under">Du {{ reserve.res_date_start_formated }} au
+                    {{reserve.res_date_end_formated}} </p>
+                <p class="annoucement-presentation-under">Pour : {{reserve.advert.tenants}} personnes</p>
+                <p class="annoucement-presentation-under">Prix : {{reserve.advert.price}} €/ jour</p>
+            </div>
+        </div>
+        <div class="action-btn">
+            <button mat-raised-button routerLink="/detail/{{reserve.advert.id}}">Voir
+                l'annonce
+            </button>
+            <button mat-raised-button *ngIf="!reserve.delTenants" (click)="deleteReserve(i)"><span
+                    style="color: red;">Annuler ma réservation</span></button>
+            <div *ngIf="reserve.delOwner" class="alertDelete">Le propriétaire souhaite annuler la
+                réservation
+            </div>
+            <div *ngIf="reserve.delTenants" class="alertDelete">Vous souhaitez annuler la
+                réservation
+            </div>
+        </div>
+        <hr class="annoucement-hr">
+    </div>
+
+    <div class="noResult" *ngIf="noReserves"> Aucune Réservation</div>
+
+</div>
