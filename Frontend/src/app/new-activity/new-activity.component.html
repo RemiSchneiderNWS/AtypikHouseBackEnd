@@ -1,0 +1,119 @@
+<div class="example-container">
+
+    <form [formGroup]="NewActivityForm" class="register-form" (ngSubmit)="onSubmit(NewActivityForm.value)">
+        <div class="form-text">Ajout d'une activité</div>
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+                <mat-label>Nom de l'activité</mat-label>
+                <input matInput placeholder="EX: Accrobranche en forêt" formControlName="name" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewActivityForm.get('name').errors &&
+            NewActivityForm.get('name').hasError('required') && NewActivityForm.get('name').touched">Aucun nom
+                saisi
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>type d’activité</mat-label>
+                <input matInput placeholder="Accrobranche" formControlName="act_type" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewActivityForm.get('act_type').errors &&
+            NewActivityForm.get('act_type').hasError('required') && NewActivityForm.get('act_type').touched">Aucun type
+                saisi
+            </div>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Numéro et nom de rue </mat-label>
+                <input matInput placeholder="EX: 10 rue de la republique" formControlName="adress" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewActivityForm.get('adress').errors &&
+            NewActivityForm.get('adress').hasError('required') && NewActivityForm.get('adress').touched">Aucune adresse
+                saisi
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Ville de l'activité</mat-label>
+                <input matInput placeholder="EX: Lyon" formControlName="city" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewActivityForm.get('city').errors &&
+            NewActivityForm.get('city').hasError('required') && NewActivityForm.get('city').touched">Aucune ville saisi
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Code postal</mat-label>
+                <input matInput maxlength="5" placeholder="EX: 69000" formControlName="act_postal" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewActivityForm.get('act_postal').errors &&
+            NewActivityForm.get('act_postal').hasError('required') && NewActivityForm.get('act_postal').touched">Aucun
+                code
+                postal saisi
+            </div>
+            <div class="error-input" *ngIf="NewActivityForm.get('act_postal').errors &&
+            !NewActivityForm.get('act_postal').hasError('required')  && NewActivityForm.get('act_postal').touched">
+                Veuillez saisir
+                uniquement des chiffres
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Prix de la journée</mat-label>
+                <input type="number" matInput placeholder="EX: 25" formControlName="act_price" required>
+
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewActivityForm.get('act_price').errors &&
+            NewActivityForm.get('act_price').hasError('required') && NewActivityForm.get('act_price').touched">Aucun
+                prix
+                saisi
+            </div>
+
+
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea style="resize: none;" matInput formControlName="describe"></textarea>
+            </mat-form-field>
+            <div class="error-input" *ngIf="NewActivityForm.get('describe').errors &&
+            NewActivityForm.get('describe').hasError('required')  && NewActivityForm.get('describe').touched">
+                Veuillez saisir
+                une description
+            </div>
+
+
+
+
+            <div class="upload-field">
+                <mat-label>Ajouter des photos ({{selectedFiles.length}}/3)</mat-label>
+                <div style="display: flex;">
+                    <div class="selectedImages" *ngFor="let image of selectedFiles; let i = index">
+                        <img src={{filesSelectedURL[i]}} alt="">
+                        <span (click)="onClickDelete(i)" class="deleteBtn">&times;</span>
+                    </div>
+
+                </div>
+                <div>
+                    <div *ngIf="selectedFiles.length < 3" style="display: flex;">
+                        <label class="labelInputImages" for="inputImages">+ Ajouter une
+                            image</label>
+                        <div class="selectedFile">Image selectionnée : {{ fileName.length > 0 ? (fileName) : null
+                            }}
+                        </div>
+                    </div>
+                    <input class="inputImages" type="file" id="inputImages" accept="image/*"
+                        (change)="onFileSelected($event)" />
+                </div>
+
+            </div>
+
+            <div *ngIf="photoEmpty" style="color: red;">Vous devez avoir au moin selectionné une photo pour poster
+                une activité </div>
+
+
+            <div class="submitBtn">
+                <button mat-raised-button style="background-color: #339e33; color: white;" type="submit"
+                    [disabled]="NewActivityForm.invalid">Ajouter l'activité</button>
+            </div>
+
+        </div>
+    </form>
+</div>

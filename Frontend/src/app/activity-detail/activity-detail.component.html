@@ -1,0 +1,32 @@
+<div class="containerAnnouncement">
+    <div style="display: flex">
+        <mat-icon>undo</mat-icon>
+        <p style="cursor: pointer; margin: 0 0 2vh;" (click)="back()" class="back">Retour</p>
+    </div>
+    <h2 class="title-center">
+        {{ activity[0].act_name }}
+    </h2>
+
+    <div style="width: 100%; display: flex; flex-direction: column">
+
+        <img *ngIf="mainImageUrl !== undefined " src="{{mainImageUrl}}" class="annoucement-image" alt="">
+        <mat-spinner *ngIf="mainImageUrl === undefined
+         " class="annoucement-image"></mat-spinner>
+        <div class="annoucement-image" style="display: flex; align-items: center;">
+            <div *ngFor="let image of imagesURL; let i = index">
+                <img *ngIf="imagesURL[i] !== undefined && imagesURL[i] !== mainImageUrl"
+                    (click)="onSelect(imagesURL[i])" src="{{imagesURL[i]}}" class="thumbnails" alt="">
+                <img *ngIf="imagesURL[i] !== undefined && imagesURL[i] === mainImageUrl " src="{{imagesURL[i]}}"
+                    class="thumbnailsSelected" alt="">
+                <mat-spinner *ngIf="imagesURL[i] === undefined
+            " class="annoucement-image"></mat-spinner>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 50px;" class="annoucement-image">
+        <div>{{ activity[0].act_describe }}</div>
+        <div style="margin-top: 50px;"> localisation :</div>
+
+    </div>
+</div>

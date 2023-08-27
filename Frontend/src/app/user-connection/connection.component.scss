@@ -1,0 +1,107 @@
+@font-face {
+    font-family: "gothic_sans_ms";
+    src: url("/assets/Police_Ecriture/GOTHIC.TTF");
+}
+
+@font-face {
+    font-family: "gothic_bold";
+    src: url("/assets/Police_Ecriture/GOTHICB.TTF");
+}
+
+.register-form {
+    justify-content: center;
+
+    vertical-align: middle;
+    margin: auto;
+    margin-top: 10%;
+    width: 70%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.example-container {
+    //margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    //background-image: "assets/image1.png";
+    background-color: red;
+}
+
+.form-text {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "gothic_sans_ms";
+}
+
+.form-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-field {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.error-input {
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    margin-left: 30%;
+}
+
+.info {
+    font-size: 12px;
+    margin-bottom: 5vh;
+}
+
+@media (min-width: 576px) {
+    .form-field {
+        width: 70%;
+    }
+
+    .btn {
+        margin-left: 35%;
+    }
+}
+
+@media (min-width: 768px) {
+    .form-field {
+        width: 60%;
+    }
+}
+
+@media (min-width: 992px) {
+    .register-form {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .register-form {
+        width: 40%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .register-form {
+        width: 20%;
+        margin: 10% auto 5% auto;
+    }
+}

@@ -1,0 +1,156 @@
+@font-face {
+    font-family: "gothic_sans_ms";
+    src: url("/assets/Police_Ecriture/GOTHIC.TTF");
+}
+
+@font-face {
+    font-family: "gothic_bold";
+    src: url("/assets/Police_Ecriture/GOTHICB.TTF");
+}
+
+.register-form {
+    justify-content: center;
+    vertical-align: middle;
+    margin: auto;
+    width: 80%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 2vh;
+}
+
+.form-text {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "gothic_sans_ms";
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.error-input {
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.submitBtn {
+    display: flex;
+    width: auto;
+    margin-left: auto;
+
+    margin-right: auto;
+    background-color: #339e33;
+    color: white;
+}
+.selectedImages {
+    position: relative;
+    display: inline-block;
+    font-size: 0;
+
+    margin: 20px;
+}
+.selectedImages img {
+    width: 50px;
+    height: 50px;
+}
+.upload-field {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inputImages {
+    display: none;
+}
+.deleteBtn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 100;
+    background-color: #fff;
+    padding: 5px 2px 2px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.2;
+    text-align: center;
+    font-size: 22px;
+    line-height: 10px;
+    border-radius: 50%;
+}
+
+.selectedImages:hover .deleteBtn {
+    opacity: 1;
+}
+.labelInputImages {
+    font-weight: bold;
+    font-family: "gothic_bold";
+    cursor: pointer;
+    border: solid;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.selectedFile {
+    margin: 5px;
+}
+
+@media (min-width: 576px) {
+    .register-form {
+        width: 70%;
+        margin-top: 4vh;
+    }
+
+    .form-field {
+        width: 60%;
+    }
+    .selectedImages img {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media (min-width: 768px) {
+    .register-form {
+        width: 70%;
+    }
+
+    .form-field {
+        width: 70%;
+    }
+    .selectedImages img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (min-width: 992px) {
+    .register-form {
+        width: 50%;
+    }
+    .form-field {
+        width: 70%;
+    }
+    .selectedImages img {
+        width: 125px;
+        height: 125px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .register-form {
+        width: 40%;
+    }
+    .selectedImages img {
+        width: 150px;
+        height: 150px;
+    }
+}
