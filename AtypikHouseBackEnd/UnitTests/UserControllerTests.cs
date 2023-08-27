@@ -18,33 +18,34 @@ public class UserControllerTests
         UserController controller = application.Services.GetService<UserController>()!;
 
         Assert.AreEqual(0, application.Services.GetService<UserRepository>()!.All().Count());
-        ActionResult<bool> response = controller.CreateUser(new CreateUserPayload
-        { 
+        ActionResult<bool> response = controller.Invoke(new CreateUserPayload
+        {
             Mail = "remi@atypikhouse.fr",
             Password = "1234Azerty___",
             Phone = "0612234556", 
             FirstName = "Rémi",
             LastName = "Schneider"
-        });
+        }, (ctrl, payload) => ctrl.CreateUser(payload));
 
         Assert.IsTrue(response.Value);
         Assert.AreEqual(1, application.Services.GetService<UserRepository>()!.All().Count());
     }
+
     [TestMethod]
     public void CreatBadUser()
     {
         WebApplication application = TestsUtils.CreateContext();
         UserController controller = application.Services.GetService<UserController>()!;
-
+        
         Assert.AreEqual(0, application.Services.GetService<UserRepository>()!.All().Count());
-        ActionResult<bool> response = controller.CreateUser(new CreateUserPayload
+        ActionResult<bool> response = controller.Invoke(new CreateUserPayload
         {
             Mail = "remi.fr",
             Password = "1234azerty___",
             Phone = "0612234556",
             FirstName = "Rémi",
             LastName = "Schneider"
-        });
+        }, (ctrl, payload) => ctrl.CreateUser(payload));
 
         Assert.IsFalse(response.Value);
         Assert.AreEqual(0, application.Services.GetService<UserRepository>()!.All().Count());
