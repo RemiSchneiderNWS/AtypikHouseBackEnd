@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Payloads;
+using Repositories;
 
 namespace UnitTests;
 
@@ -16,6 +17,7 @@ public class UserControllerTests
         WebApplication application = TestsUtils.CreateContext();
         UserController controller = application.Services.GetService<UserController>()!;
 
+        Assert.AreEqual(0, application.Services.GetService<UserRepository>()!.All().Count());
         ActionResult<bool> response = controller.CreateUser(new CreateUserPayload
         { 
             Mail = "remi@atypikhouse.fr",
@@ -26,5 +28,6 @@ public class UserControllerTests
         });
 
         Assert.IsTrue(response.Value);
+        Assert.AreEqual(1, application.Services.GetService<UserRepository>()!.All().Count());
     }
 }
