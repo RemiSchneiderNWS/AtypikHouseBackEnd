@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database
 {
-    public class AppDbContext : DbContext
+    public abstract class AppDbContext : DbContext
     {
         public DbSet<Activity> Activity { get; set; }
         public DbSet<User> Users { get; set; }
@@ -26,22 +26,6 @@ namespace Database
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-
-            string connectionString = "Host=localhost;Database=AtypikHouse;Username=postgres;Password=866e72d0;Port=49174";
-
-            optionsBuilder.UseNpgsql(connectionString, options =>
-            {
-                options.MigrationsAssembly("AtypikHouseBackEnd"); 
-                options.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null);
-            });
-
-          
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-        }
-        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ActivityDefinition.Build(modelBuilder);
