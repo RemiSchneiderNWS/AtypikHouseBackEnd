@@ -29,6 +29,13 @@ namespace Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ActivityDefinition.Build(modelBuilder);
+            ActivityImageDefinition.Build(modelBuilder);
+            AdvertDefinition.Build(modelBuilder);
+            AdvertImageDefinition.Build(modelBuilder);
+            CommentarysDefinition.Build(modelBuilder);
+            CriteriaAdvertDefinition.Build(modelBuilder);
+            CriteriaDefinition.Build(modelBuilder);
+            ReservationDefinition.Build(modelBuilder);
             UserDefinition.Build(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
