@@ -18,7 +18,6 @@ internal static class ActivityImageDefinition
         b.HasKey(x => x.Id);
         b.Property(x => x.Name);
         b.Property(x => x.Order);
-        b.Property(x => x.Activity);
-
+        b.HasOne(x => x.Activity);
     }
 }
