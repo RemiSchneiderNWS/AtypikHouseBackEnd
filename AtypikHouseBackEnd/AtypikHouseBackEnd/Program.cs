@@ -7,7 +7,7 @@ using Repositories;
 
 WebApplication app = ProjectApplicationBuilder.CreateProjectApp(args, new Action<WebApplicationBuilder>[]
 {
-    i => i.Services.AddDbContext<AppDbContext, PGSQLAppDbContext>()
+    i => i.Services.AddScoped<AppDbContext, PGSQLAppDbContext>(o => new PGSQLAppDbContext(o.GetService<IConfiguration>()!["ConnectionStrings:Connection"] ?? null))
 });
 
 app.Run();
