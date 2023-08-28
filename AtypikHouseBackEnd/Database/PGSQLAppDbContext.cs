@@ -27,7 +27,6 @@ namespace Database
 
             optionsBuilder.UseNpgsql(ConnectionString, options =>
             {
-                options.MigrationsAssembly("AtypikHouseBackEnd");
                 options.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null);
             });
 

@@ -18,7 +18,7 @@ internal static class AdvertImageDefinition
         b.HasKey(x => x.Id);
         b.Property(x => x.Name);
         b.Property(x => x.Order);
-        b.Property(x => x.Advert);
+        b.HasOne(x => x.Advert);
 
     }
 }
